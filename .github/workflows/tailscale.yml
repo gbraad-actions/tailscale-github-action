@@ -19,10 +19,8 @@ jobs:
       - name: Tailscale Action
         uses: ./
         with:
-          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
-          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
-          tags: tag:ci
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
 
-      - name: check for hello.ts.net in netmap
+      - name: Check for connectivity
         run:
-          tailscale status | grep -q hello
+          tailscale status | grep github
